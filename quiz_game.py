@@ -15,7 +15,7 @@ def run_quiz():
     questions = load_questions()
     if not questions:
         print("Could not load questions. Make sure questions.json exists and is valid.")
-        return
+        return False
     random.shuffle(questions)
     
     score = 0
@@ -41,6 +41,25 @@ def run_quiz():
             print(f"Wrong! Correct answer: {q['answer']}) {correct_option}\n")
 
     print(f"Quiz complete! Your final score is {score} out of {len(questions)}.")
+    percentage = score / len(questions) * 100
+    print(f"That's {percentage:.0f}%.")
+    if percentage == 100:
+        print("Perfect score!")
+    elif percentage >= 75:
+        print("Good job!")
+    else:
+        print("Keep practising!")
+    return True
+    
+def main():
+    while True:
+        if not run_quiz():
+            break
+        again = input("Play again? (y/n): ").strip().lower()
+        if again != "y":
+            print("Thanks for playing!")
+            break
+
 
 if __name__ == "__main__":
-    run_quiz()
+    main()
