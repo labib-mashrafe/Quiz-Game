@@ -1,19 +1,21 @@
 # Quiz Game CLI
 import random
+import json
 
+QUESTIONS_FILE="questions.json"
+
+def load_questions():
+    try:
+        with open(QUESTIONS_FILE, "r") as file:
+            return json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return None
+    
 def run_quiz():
-    questions = [
-        {"question": "What is the capital of France?",
-         "options": ["London", "Paris", "Rome", "Berlin"], "answer": "B"},
-        {"question": "Which planet is known as the Red Planet?",
-         "options": ["Venus", "Jupiter", "Mars", "Saturn"], "answer": "C"},
-        {"question": "What is 5 + 7?",
-         "options": ["12", "10", "13", "11"], "answer": "A"},
-        {"question": "Who wrote Hamlet?",
-         "options": ["Dickens", "Tolstoy", "Homer", "Shakespeare"], "answer": "D"},
-        {"question": "What is the largest ocean?",
-         "options": ["Atlantic", "Pacific", "Indian", "Arctic"], "answer": "B"}
-    ]
+    questions = load_questions()
+    if not questions:
+        print("Could not load questions. Make sure questions.json exists and is valid.")
+        return
     random.shuffle(questions)
     
     score = 0
