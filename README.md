@@ -1,61 +1,67 @@
-# Quiz Game CLI
+# Quiz Game
 
----
-
-## Overview
-This is a **Python command-line quiz game**. Users answer multiple-choice questions, and the program tracks their score and provides feedback for each answer. The game demonstrates basic Python programming concepts and interactive CLI design.
-
----
+A multiple-choice quiz game for the terminal, written in Python. Questions are loaded from a JSON file and shuffled every round, so you can add your own questions without touching the code.
 
 ## Features
-- Multiple-choice quiz questions  
-- Case-insensitive answer checking  
-- Input validation to prevent blank responses  
-- Displays final score at the end of the quiz  
-- Modular and extendable code structure  
 
----
+- Multiple-choice questions (A–D), with input validation that accepts only A, B, C or D
+- Questions shuffled into a random order each round
+- Questions stored in `questions.json`, separate from the code
+- Final score with percentage and feedback: "Perfect score!" at 100%, "Good job!" at 75% or above, "Keep practising!" below 75%
+- Play again without restarting the program
+- Clear error message, and a clean exit, if the questions file is missing or invalid
 
 ## How to Run
-1. Open `quiz_game.py` in a Python environment that supports input and print (e.g., Pyto, Carnets, VS Code, or any desktop Python IDE).  
-2. Run the script:
 
-```bash
+Requires Python 3. Keep `questions.json` in the same folder as `quiz_game.py`.
+
+```
 python quiz_game.py
 ```
 
-## Example Interaction                
+## Adding Questions
+
+Add an entry to `questions.json` in this format:
+
+```json
+{
+    "question": "What is the capital of Japan?",
+    "options": ["Seoul", "Beijing", "Tokyo", "Bangkok"],
+    "answer": "C"
+}
 ```
-Welcome to the Quiz Game! Answer the questions below:
 
-1. What is the capital of France?
-Your answer: Paris
-Correct!
+`answer` is the letter of the correct option.
 
-2. Which planet is known as the Red Planet?
-Your answer: Mars
-Correct!
+## Example
 
-3. What is 5 + 7?
-Your answer: 10
-Wrong! Correct answer: 12
-
-4. Who wrote Hamlet?
-Your answer: Shakespeare
-Correct!
-
-5. What is the largest ocean?
-Your answer: Atlantic
-Wrong! Correct answer: Pacific
-
-Quiz complete! Your final score is 3 out of 5.
 ```
-## Skills Demonstrated                  
-   - Python fundamentals: loops, dictionaries, conditionals
-   - Handling user input and validation
-   - CLI-based interactive application
-   - Modular programming using functions
-   - Tracking and displaying user score
+1. Which planet is known as the Red Planet?
+   A) Venus
+   B) Jupiter
+   C) Mars
+   D) Saturn
+Your answer: x
+Please enter A, B, C, or D.
+Your answer: c
+Correct!
 
-## License                            
-     This project is licensed under the MIT License 
+...
+
+Quiz complete! Your final score is 4 out of 5.
+That's 80%.
+Good job!
+Play again? (y/n): n
+Thanks for playing!
+```
+
+## What I Learned
+
+- Loading data from a JSON file and separating data from code
+- Using the `random` module to shuffle a list
+- Pairing lists with `zip()` and validating input
+- Returning `True`/`False` from a function to control program flow
+
+## License
+
+MIT
