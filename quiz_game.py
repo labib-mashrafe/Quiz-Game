@@ -1,4 +1,5 @@
 # Quiz Game CLI
+import random
 
 def run_quiz():
     questions = [
@@ -13,7 +14,8 @@ def run_quiz():
         {"question": "What is the largest ocean?",
          "options": ["Atlantic", "Pacific", "Indian", "Arctic"], "answer": "B"}
     ]
-
+    random.shuffle(questions)
+    
     score = 0
 
     print("Welcome to the Quiz Game! Answer the questions below:\n")
